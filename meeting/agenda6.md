@@ -9,7 +9,7 @@
 1. Build automated workflow
 2. Develop custom ComfyUI nodes
 
-## Automated Workflow
+## Automated Workflow 
 
 Extend the current ComfyUI pipeline into a fully automated batch-processing workflow, enabling consistent generation, filtering, and annotation across datasets.
 
