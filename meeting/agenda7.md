@@ -51,3 +51,8 @@ I will start preparing the slides this week and incorporate feedback next week t
    **Research Support** such as subscription to journals or databases, **cloud  computing & data storage**, specialised software fees, **research & infrastructure  facilities**, ethics & compliance training, focus groups, field research, academic publication costs, costs for disseminating research findings, editing, formatting &  graphic design services, printing costs, publication fees
 
    Could this funding be used to cover expenses like renting GPUs or purchasing devices?
+
+**Summary of today's meeting:**
+
+1. Demonstrated the effect of the custom node.
+2. For the upcoming meeting agenda, I will break down the pipeline progress in more detail and schedule the weekly tasks more precisely

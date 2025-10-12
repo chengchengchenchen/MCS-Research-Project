@@ -1,0 +1,262 @@
+{
+  "1": {
+    "inputs": {
+      "samples": [
+        "9",
+        0
+      ],
+      "vae": [
+        "20",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "5": {
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "clip_g.safetensors",
+      "clip_name3": "t5xxl_fp8_e4m3fn.safetensors"
+    },
+    "class_type": "TripleCLIPLoader",
+    "_meta": {
+      "title": "三重CLIP加载器"
+    }
+  },
+  "7": {
+    "inputs": {
+      "image": "${INPUT_DIR}"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "9": {
+    "inputs": {
+      "seed": 876125224001302,
+      "steps": 30,
+      "cfg": 5.45,
+      "sampler_name": "euler",
+      "scheduler": "sgm_uniform",
+      "denoise": 1,
+      "model": [
+        "20",
+        0
+      ],
+      "positive": [
+        "11",
+        0
+      ],
+      "negative": [
+        "11",
+        1
+      ],
+      "latent_image": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "10": {
+    "inputs": {
+      "width": [
+        "15",
+        0
+      ],
+      "height": [
+        "15",
+        1
+      ],
+      "batch_size": 8
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "空Latent图像（SD3）"
+    }
+  },
+  "11": {
+    "inputs": {
+      "strength": 1.0000000000000002,
+      "start_percent": 0,
+      "end_percent": 1,
+      "positive": [
+        "21",
+        0
+      ],
+      "negative": [
+        "19",
+        0
+      ],
+      "control_net": [
+        "22",
+        0
+      ],
+      "image": [
+        "24",
+        0
+      ],
+      "vae": [
+        "20",
+        2
+      ]
+    },
+    "class_type": "ControlNetApplyAdvanced",
+    "_meta": {
+      "title": "应用ControlNet（旧版高级）"
+    }
+  },
+  "14": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "scale_by": 1.0000000000000002,
+      "image": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "ImageScaleBy",
+    "_meta": {
+      "title": "缩放图像（比例）"
+    }
+  },
+  "15": {
+    "inputs": {
+      "image": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "GetImageSize",
+    "_meta": {
+      "title": "Get Image Size"
+    }
+  },
+  "19": {
+    "inputs": {
+      "text": "embedding:easynegative, too colorful",
+      "clip": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative Prompt"
+    }
+  },
+  "20": {
+    "inputs": {
+      "ckpt_name": "sd3.5_large_fp8_scaled.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint加载器（简易）"
+    }
+  },
+  "21": {
+    "inputs": {
+      "text": "camera shooting, a scooter, real world, realism, highres",
+      "clip": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Positive Prompt"
+    }
+  },
+  "22": {
+    "inputs": {
+      "control_net_name": "sd3.5_large_controlnet_canny.safetensors"
+    },
+    "class_type": "ControlNetLoader",
+    "_meta": {
+      "title": "加载ControlNet模型"
+    }
+  },
+  "24": {
+    "inputs": {
+      "low_threshold": 0.25,
+      "high_threshold": 0.5,
+      "image": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "Canny",
+    "_meta": {
+      "title": "Canny边缘检测"
+    }
+  },
+  "25": {
+    "inputs": {
+      "save_dir": "${SAVE_DIR}",
+      "batch_size": 8,
+      "fusion_weight": 0,
+      "dino_model_name": "vit_base_patch14_dinov2.lvd142m",
+      "dino_pool": "auto",
+      "source_image": [
+        "14",
+        0
+      ],
+      "candidate_images": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "CLIPMinRanker",
+    "_meta": {
+      "title": "CLIP Min Ranker"
+    }
+  },
+  "26": {
+    "inputs": {
+      "text_0": "Saved JSON to outputs/clip_scores\\scores.json and CSV to outputs/clip_scores\\scores_sorted.csv",
+      "text": [
+        "25",
+        0
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "28": {
+    "inputs": {
+      "save_dir": "${SAVE_DIR}",
+      "file_name": "${FILE_NAME}",
+      "image": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "CustomSaveImage",
+    "_meta": {
+      "title": "Custom Save Image (Batch)"
+    }
+  },
+  "30": {
+    "inputs": {
+      "save_dir": "${SAVE_DIR}",
+      "file_name": "${FILE_NAME}",
+      "image": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "CustomSaveImage",
+    "_meta": {
+      "title": "Custom Save Image (Batch)"
+    }
+  }
+}
