@@ -44,41 +44,36 @@ Each image generates 8 augmented versions, and both CLIP and DINOv2 embeddings a
 
 some points: 
 
-1. Due to ComfyUI’s node-saving limitations (unable to specify a custom save directory), write a custom “save image node.
+1. Due to ComfyUI’s node-saving limitations (unable to specify a custom save directory), write a custom save image node.
 
 2. Many *scooter* images lack background scenes.
 
-   <p align="center">
-     <img src="..\assets\3.jpg" width="30%"/>
-     <img src="..\assets\4.jpg" width="30%"/>
-   </p>
+   | ![](../assets/3.jpg) | ![](../assets/4.jpg) |
+   | :------------------: | :------------------: |
 
-3. Several images in the dataset are padded to 416×416, resulting in white borders that degrade generation quality.
+3. Several images in the dataset are padded to 416×416 square, resulting in white borders that degrade generation quality.
 
    Plan: preprocess images to remove borders (while preserving information), then generate and repad to 416×416.
 
-   <p align="center">
-     <img src="..\assets\source.jpg" width="30%"/>
-     <img src="..\assets\4.png" width="30%"/>
-   </p>
+   | ![](..\assets\source.jpg) | ![](../assets/4.png) |
+   | :-----------------------: | :------------------: |
 
 4. The **SD3.5 model** performs poorly on objects captured at abnormal angles (e.g., rotated or skewed views), likely due to the lack of such samples in its training data.
 
-   <p align="center">
-     <img src="..\assets\1.png" width="45%"/>
-     <img src="..\assets\1_01.png" width="45%"/>
-   </p>
+   | ![](../assets/1.png) | ![](../assets/1_01.png) |
+   | :------------------: | :---------------------: |
 
-   <p align="center">
-     <img src="..\assets\2.png" width="45%"/>
-     <img src="..\assets\2_01.png" width="45%"/>
-   </p>
+   | ![](../assets/2.png) | ![](../assets/2_01.png) |
+   | :------------------: | :---------------------: |
 
 5. The **Canny parameters** work well for some cases but limit the overall generation quality since they are fixed across the workflow.
+
+   dynamic params
 
    Plan: develop a **custom multi-scale Canny node**, applying multiple thresholds, then merging the results (via union or weighted fusion).
 
    Alternatively, use **CLIP/DINO-based scoring** to rank multiple Canny results and select the best one for ControlNet input (uncertain effectiveness, especially for long-tail cases).
+
 
 
 
