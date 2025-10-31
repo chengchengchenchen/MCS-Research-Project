@@ -1,4 +1,4 @@
 /results
-/code/dataset
-/code/outputs
-/code/test
+/code/generation/dataset
+/code/generation/outputs
+/code/generation/test
