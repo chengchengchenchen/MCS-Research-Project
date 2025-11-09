@@ -1,5 +1,7 @@
 /results
-/code/dataset
+/code/dataset/*
+!/code/dataset/README.md
+
 /.vscode
 /.DS_Store
 
