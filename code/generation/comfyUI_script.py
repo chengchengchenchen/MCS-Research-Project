@@ -1,20 +1,20 @@
-# file: run_dataset_with_placeholders.py
 import os
 import json
 import time
 import requests
 from pathlib import Path
 from typing import Dict, Any
-from tqdm import tqdm  # ✅ Added for progress bar
+from tqdm import tqdm
 
 # === Basic configuration ===
+# TODO: Transfer hardcode path to paras input in cmd
 API = "http://127.0.0.1:8000"         # ComfyUI backend API
 PROMPT_PATH = "canny-clip.json"       # Workflow file path
-INPUT_DIR = "dataset"                 # Input dataset folder
-OUTPUT_DIR = "outputs/scooter_batch"  # Root output folder
+INPUT_DIR = "../yolo2/valid/images"                 # Input dataset folder
+OUTPUT_DIR = "outputs/valid"  # Root output folder
 CLIENT_ID = "python"
 
-# === Node IDs in your ComfyUI workflow ===
+# === Node IDs in ComfyUI workflow ===
 NODE_ID_LOADIMAGE = "7"               # LoadImage node ID
 NODE_ID_CLIP = "25"  
 NODE_ID_SAVEIMAGE = "30"              # CustomSaveImage node ID for generated images
@@ -89,7 +89,7 @@ def main():
         pid = submit(prompt)
         tqdm.write(f"[{i:02d}] pid={pid}, image={img_path.name}")
         _ = wait_done(pid)
-        tqdm.write(f"[{i:02d}] ✅ Done -> saved under {run_dir}")
+        tqdm.write(f"[{i:02d}] saved under {run_dir}")
         time.sleep(0.2)
 
 if __name__ == "__main__":

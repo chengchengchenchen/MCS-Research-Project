@@ -1,4 +1,13 @@
 /results
+/code/dataset
+/.vscode
+/.DS_Store
+
 /code/generation/dataset
 /code/generation/outputs
 /code/generation/test
+
+/code/detection/*
+!/code/detection/build_yolo_dataset.ipynb
+!/code/detection/train.ipynb
+!/code/detection/README.md
