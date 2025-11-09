@@ -66,7 +66,7 @@ The same helper stack is reused by the batch/grid utilities so behavior stays co
 
 
 ## Batch & Grid Experiments
-### `grid_experiment_min.py`
+### `grid_experimen.py`
 A pure-Python version of the same sweep for long unattended runs.
 
 Key parameters near the top:

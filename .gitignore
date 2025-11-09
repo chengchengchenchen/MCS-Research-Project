@@ -13,3 +13,4 @@
 !/code/detection/build_yolo_dataset.ipynb
 !/code/detection/train.ipynb
 !/code/detection/README.md
+!code/detection/grid_experiment.py
