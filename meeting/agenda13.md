@@ -27,6 +27,12 @@ Proposed metrics for assessing generated image quality:
 
 ### Filtering and Ranking
 
+These three metrics exhibit a certain degree of positive correlation.
+
+![realtive](..\assets\correlations.png)
+
+In the original filtering strategy, for each source image we simply selected the top-k synthetic images. However, for source images with **simple structure**, most generated results tend to be of reasonably good quality, whereas for source images with **complex structure**, nearly all generated results are of relatively poor quality.
+
 To make full use of the three metrics to effectively rank the quality of generated images, in order to select high-quality synthetic samples to mix with original data for training and improve object detection performance.
 
 1. Normalize all metrics.
