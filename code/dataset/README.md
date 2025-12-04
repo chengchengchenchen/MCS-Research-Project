@@ -7,7 +7,6 @@ Place your data in the following layout:
 ```bash
 ├─dataset
 │  ├─test
-│  │  ├─.trash_things_test
 │  │  ├─images
 │  │  └─labels
 │  ├─train

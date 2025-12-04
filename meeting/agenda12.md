@@ -62,7 +62,14 @@ Based on the email, will visit to Swordfish Computing in the afternoon Dec 2. (n
 
 
 1. I updated the generation module code last week, and this week I will run the full pipeline. 
-2. Whether it’s possible to take a bus from Adelaide Airport to the city?
-3. Is Louis still unsure about attending? Should I go ahead and book my own flights and accommodation?
-4. If I stay in Adelaide for the weekend and book a flight back on Sunday, will that affect the reimbursement?
+
+2. And performing background inpainting may help address the issue of poor performance on object categories that the model has not previously seen.
+
+3. Whether it’s possible to take a bus from Adelaide Airport to the city?
+
+4. Is Louis still unsure about attending? Should I go ahead and book my own flights and accommodation?
+
+5. If I stay in Adelaide for the weekend and book a flight back on Sunday, will that affect the reimbursement?
+
+   
 

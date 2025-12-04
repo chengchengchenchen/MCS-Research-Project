@@ -18,10 +18,16 @@ Proposed metrics for assessing generated image quality:
 
 1. DINO score between the synthesized image and the source image.
     Measures structural and appearance-level similarity based on self-supervised visual features.
+
 2. CLIP score between the synthesized image and the source image.
    Measures high-level semantic consistency between the generated scene and the original scene.
+
+   *Scaling Inference Time Compute for Diffusion Models [(CVPR 2025)](https://openaccess.thecvf.com/content/CVPR2025/html/Ma_Scaling_Inference_Time_Compute_for_Diffusion_Models_CVPR_2025_paper.html)*
+
 3. CLIP score between each bounding box in the synthesized image and its corresponding prompt.
     Evaluates whether each object visually aligns with its category description.
+
+    *Data Augmentation for Object Detection via Controllable Diffusion Models [WACV 2024](https://openaccess.thecvf.com/content/WACV2024/papers/Fang_Data_Augmentation_for_Object_Detection_via_Controllable_Diffusion_Models_WACV_2024_paper.pdf)* 
 
 
 
