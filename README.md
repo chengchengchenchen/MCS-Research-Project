@@ -71,6 +71,96 @@ Ollama captioning:
 - Default model in code: `qwen3-vl:32b`.
 - To skip captioning, set `skip_caption: true` in the `prepare_lora.py` config.
 
+## LoRA Training with OneTrainer
+
+LoRA training is done manually in the OneTrainer GUI. This repository prepares the captioned image folders and provides
+a preset template, but it does not launch OneTrainer training automatically.
+
+Scope:
+
+- Train one LoRA per dataset.
+- The 8 datasets are `voc`, `apex_game`, `aquarium`, `cotton`, `mri_image`, `road_traffic`, `robomaster`, and
+  `underwater`.
+- Use only the pipeline-materialized train split for LoRA training.
+- The LoRA train split must contain 200 images.
+- Caption sidecar files are required: every `*.jpg`/`*.png` in the train folder must have a matching `*.txt` caption.
+
+Expected LoRA train folder:
+
+```text
+workdir/<dataset-run>/filtered/train/images/
+  image_0001.jpg
+  image_0001.txt
+  ...
+```
+
+Before opening OneTrainer, verify the train folder has 200 images and paired captions:
+
+```bash
+find workdir/<dataset-run>/filtered/train/images -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' \) | wc -l
+find workdir/<dataset-run>/filtered/train/images -type f -iname '*.txt' | wc -l
+```
+
+OneTrainer setup:
+
+1. Install OneTrainer separately from `https://github.com/Nerogar/OneTrainer`.
+2. Start the OneTrainer GUI with `start-ui.bat` on Windows or `./start-ui.sh` on Linux/macOS.
+3. Copy the preset template into OneTrainer:
+
+```bash
+cp onetrainer_presets/sd35_large_turbo_lora_200_train_with_caption.json /path/to/OneTrainer/training_presets/<dataset>.json
+```
+
+Windows PowerShell example:
+
+```powershell
+$dataset = "voc"
+Copy-Item onetrainer_presets\sd35_large_turbo_lora_200_train_with_caption.json "E:\a\OneTrainer\training_presets\$dataset.json"
+```
+
+In the OneTrainer GUI:
+
+- Load the copied preset.
+- Set `concept_file_name` to a concept JSON for this dataset, for example
+  `training_concepts/<dataset>_concepts.json`.
+- In that concept JSON, use one enabled standard concept whose path is the 200-image pipeline train folder:
+  `workdir/<dataset-run>/filtered/train/images`.
+- Keep prompt source as sample/sidecar caption so OneTrainer reads the paired `*.txt` files.
+- Set `output_model_destination` to the unified LoRA name:
+  `models/<dataset>_sd35_large_turbo_lora.safetensors`.
+
+The preset template is based on `voc-10-with.json` and preserves these training settings:
+
+- base model: `stabilityai/stable-diffusion-3.5-large-turbo`
+- model type: `STABLE_DIFFUSION_35`
+- training method: `LORA`
+- epochs: `400`
+- batch size: `16`
+- gradient accumulation: `1`
+- learning rate: `0.0003`
+- scheduler: `COSINE`
+- warmup steps: `200`
+- optimizer: `ADAMW`
+- weight decay: `0.01`
+- resolution: `512`
+- aspect ratio bucketing: enabled
+- latent caching: enabled
+- gradient checkpointing: `ON`
+- train device: `cuda`
+- temp device: `cpu`
+- train dtype: `FLOAT_16`
+- fallback train dtype: `BFLOAT_16`
+- output dtype: `FLOAT_32`
+- output format: `SAFETENSORS`
+- LoRA rank: `16`
+- LoRA alpha: `1.0`
+- validation: disabled
+- TensorBoard: enabled
+- save every: `100` epochs
+
+After training, use the generated `models/<dataset>_sd35_large_turbo_lora.safetensors` in the ComfyUI workflow for that
+dataset.
+
 ## Dataset Inputs
 
 The scripts assume `data/` is empty unless you provide local data.
