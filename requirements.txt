@@ -1,0 +1,9 @@
+numpy
+pillow
+pyyaml
+pytest
+requests
+timm
+torch
+open_clip_torch
+ultralytics
