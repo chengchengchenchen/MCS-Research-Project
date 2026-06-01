@@ -1,9 +1,7 @@
 # Thesis Reproduction YOLO Research Pipeline
 
-This repository is the standalone source tree for reproducing the thesis YOLO data-generation experiments. It
-does not depend on the older project `code/` folder or on datasets outside this repository. A fresh clone starts
-with no dataset: downloaded data, generated candidates, training runs, weights, and caches are written under
-ignored local directories.
+This repository is for reproducing the thesis data-generation experiments. A fresh clone starts
+with no dataset: downloaded data, generated candidates, training runs, weights.
 
 ## Pipeline
 
